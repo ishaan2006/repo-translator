@@ -1,5 +1,10 @@
 # Repo Translator
 
+[![CI](https://github.com/ishaan2006/repo-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/ishaan2006/repo-translator/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Manifest V3](https://img.shields.io/badge/manifest-v3-green)
+![Chrome | Firefox](https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox-lightgrey)
+
 A Chrome and Firefox extension that translates non-English GitHub pages (READMEs, repo descriptions,
 commit messages, issues and pull requests) into English with Claude Haiku, while leaving code, commands,
 links and product names untouched.
@@ -91,5 +96,8 @@ end to end in headless Chrome with Playwright against mocked GitHub pages and a 
 - Needs your own Anthropic API key. Translation quality is that of the selected Claude model.
 - Only runs on `github.com`.
 
+## Privacy and security
+See [PRIVACY.md](PRIVACY.md) for exactly what is sent where, and [SECURITY.md](SECURITY.md) to report a vulnerability.
+
 ## License
-MIT
+[MIT](LICENSE)
