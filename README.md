@@ -12,6 +12,10 @@ links and product names untouched.
 GitHub has a lot of strong projects written up in Chinese, Japanese, Korean, Russian and other languages.
 This lets you read them in place, with the original text one click away.
 
+![Repo Translator on a Chinese-language repository: the About blurb and commit messages are shown in English, each with a Show original toggle](docs/translated-page.png)
+
+*A Chinese-language repository after clicking Translate. The About blurb and commit messages are English, with "Show original" toggles.*
+
 ## Features
 - **In-place translation.** Formatting survives: links, bold, lists, code blocks and images stay where they were.
 - **Show original toggle** on every translated section.
