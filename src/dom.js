@@ -22,16 +22,25 @@
   function countLatin(s) { return (s.match(LETTER_RE_G) || []).length; }
   function hasLetters(s) { return /[\p{L}]/u.test(s); }
 
+  // Names the dominant non-English script. Counts characters per script instead of taking the first match,
+  // so a Chinese page with a "한국어" or "日本語" language link is still reported as Chinese.
   function guessScriptLanguage(s) {
-    if (/[぀-ヿ]/.test(s)) return "Japanese";
-    if (/[가-힯]/.test(s)) return "Korean";
-    if (/[一-鿿㐀-䶿]/.test(s)) return "Chinese";
-    if (/[Ѐ-ӿ]/.test(s)) return "Russian";
-    if (/[؀-ۿ]/.test(s)) return "Arabic";
-    if (/[֐-׿]/.test(s)) return "Hebrew";
-    if (/[ऀ-ॿ]/.test(s)) return "Hindi";
-    if (/[฀-๿]/.test(s)) return "Thai";
-    return null;
+    function n(re) { return (s.match(re) || []).length; }
+    var kana = n(/[぀-ヿ]/g), han = n(/[一-鿿㐀-䶿]/g);
+    var counts = {
+      Korean: n(/[가-힯]/g),
+      Chinese: han,
+      // Japanese mixes kana with han, so it needs a real share of kana, not a stray character.
+      Japanese: kana > 0.15 * (kana + han) ? kana + han : 0,
+      Russian: n(/[Ѐ-ӿ]/g),
+      Arabic: n(/[؀-ۿ]/g),
+      Hebrew: n(/[֐-׿]/g),
+      Hindi: n(/[ऀ-ॿ]/g),
+      Thai: n(/[฀-๿]/g)
+    };
+    var best = null, top = 0;
+    for (var k in counts) { if (counts[k] > top) { top = counts[k]; best = k; } }
+    return best;
   }
 
   // Text of a container without code, so code comments don't sway the language check.

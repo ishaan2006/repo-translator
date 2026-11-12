@@ -80,6 +80,7 @@ the Anthropic Console.
 ## Tests and checks
 ```
 node tests/background.test.mjs                     # background script: key handling, caching, batch recovery, sender checks
+node tests/language.test.mjs                       # language detection on mixed-script pages
 npx web-ext lint --source-dir dist/firefox         # Mozilla's linter: 0 errors, 0 warnings
 ```
 CI runs the build, the unit tests and the Firefox lint on every push. The content script was also exercised

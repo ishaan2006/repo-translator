@@ -25,7 +25,7 @@ jobs:
           mkdir out
           cp dist/repo-translator-chrome.zip "out/repo-translator-chrome-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix="repo-translator-${GITHUB_REF_NAME#v}/" -o "out/repo-translator-source-${GITHUB_REF_NAME}.zip" HEAD
-      - name: Attach to the release (creates a pre-release if none exists yet)
+      - name: Attach to the release (creates a release if none exists yet)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -37,5 +37,5 @@ jobs:
             sleep 10
           done
           gh release create "$GITHUB_REF_NAME" out/*.zip \
-            --prerelease --title "$GITHUB_REF_NAME (pre-release)" \
+            --title "$GITHUB_REF_NAME" \
             --notes-file .github/release-notes.md

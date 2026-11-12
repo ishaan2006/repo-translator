@@ -19,5 +19,7 @@ jobs:
         run: node build.mjs
       - name: Unit tests (background script)
         run: node tests/background.test.mjs
+      - name: Unit tests (language detection)
+        run: node tests/language.test.mjs
       - name: Lint Firefox build
         run: npx --yes web-ext lint --source-dir dist/firefox

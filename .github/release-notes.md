@@ -1,4 +1,4 @@
-Pre-release build for testing. Not published to any extension store.
+Install from source or from the attached zip. Not published to any extension store.
 
 **Install in Chrome, Edge or Brave**
 1. Download and unzip `repo-translator-chrome-<version>.zip`.
