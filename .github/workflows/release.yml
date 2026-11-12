@@ -1,6 +1,6 @@
 name: Release
-# Pushing a tag like v1.2.0 builds the packages and publishes a pre-release with the
-# Chrome zip and a source zip attached. Nothing is sent to any extension store.
+# When a tag like v1.2.0 is created (by publishing a release in the GitHub UI or pushing the tag),
+# this builds the packages and attaches the Chrome zip and a source zip to that release. Nothing is sent to any extension store.
 on:
   push:
     tags: ["v*"]
@@ -25,10 +25,17 @@ jobs:
           mkdir out
           cp dist/repo-translator-chrome.zip "out/repo-translator-chrome-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix="repo-translator-${GITHUB_REF_NAME#v}/" -o "out/repo-translator-source-${GITHUB_REF_NAME}.zip" HEAD
-      - name: Publish pre-release
+      - name: Attach to the release (creates a pre-release if none exists yet)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          for i in 1 2 3 4 5 6; do
+            if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+              gh release upload "$GITHUB_REF_NAME" out/*.zip --clobber
+              exit 0
+            fi
+            sleep 10
+          done
           gh release create "$GITHUB_REF_NAME" out/*.zip \
             --prerelease --title "$GITHUB_REF_NAME (pre-release)" \
             --notes-file .github/release-notes.md
