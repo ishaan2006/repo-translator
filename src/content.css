@@ -1,0 +1,29 @@
+.ght-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 0 0 12px 0;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--fgColor-muted, #59636e);
+  background: var(--bgColor-muted, #f6f8fa);
+  border: 1px solid var(--borderColor-default, #d1d9e0);
+  border-radius: 6px;
+}
+.ght-bar.ght-inline {
+  display: inline-flex;
+  margin: 4px 0 8px 0;
+  padding: 2px 8px;
+  font-size: 11px;
+}
+.ght-bar .ght-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--fgColor-accent, #0969da);
+  cursor: pointer;
+}
+.ght-bar .ght-link:hover { text-decoration: underline; }

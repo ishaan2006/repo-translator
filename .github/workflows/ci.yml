@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build Chrome and Firefox packages
+        run: node build.mjs
+      - name: Unit tests (background script)
+        run: node tests/background.test.mjs
+      - name: Lint Firefox build
+        run: npx --yes web-ext lint --source-dir dist/firefox

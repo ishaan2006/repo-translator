@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo Translator settings</title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<main>
+  <h1>Repo Translator</h1>
+  <p class="lede">Translates non-English READMEs, repo descriptions, issues and pull requests on GitHub into English with Claude. Code, commands and names are left untouched.</p>
+
+  <section>
+    <h2>Anthropic API key</h2>
+    <p class="note">Stored only in this browser's local extension storage on this device. It is not synced to your Google or Firefox account, never shown to GitHub pages, and only ever sent to <code>api.anthropic.com</code>.</p>
+    <div id="keyState" class="state"></div>
+    <form id="keyForm" autocomplete="off">
+      <input id="key" type="password" placeholder="sk-ant-..." spellcheck="false" autocomplete="off" aria-label="Anthropic API key">
+      <button type="submit">Save key</button>
+    </form>
+    <div class="row">
+      <button id="test" type="button">Test key</button>
+      <button id="remove" type="button" class="danger">Remove key</button>
+    </div>
+    <div id="keyMsg" class="msg" role="status"></div>
+    <p class="note">Tip: give this key a monthly spend limit in the Anthropic Console. To keep costs down, long pages are translated as you scroll, identical text is sent once, and every translation is cached on this device, so nothing is paid for twice.</p>
+  </section>
+
+  <section>
+    <h2>Translation</h2>
+    <label class="check"><input id="auto" type="checkbox"> Translate automatically when a page isn't in English (off: a "Translate page" button appears instead)</label>
+    <label class="field">Model
+      <input id="model" type="text" spellcheck="false">
+    </label>
+    <p class="note">Default <code>claude-haiku-5-5</code> (fast and cheap). Use a Sonnet model for harder technical text.</p>
+    <div class="row">
+      <button id="saveSettings" type="button">Save settings</button>
+      <button id="clear" type="button">Clear translation cache</button>
+    </div>
+    <div id="setMsg" class="msg" role="status"></div>
+  </section>
+
+  <section id="permSection" hidden>
+    <h2>Permissions</h2>
+    <p class="note">Firefox needs your OK to run on github.com and to reach api.anthropic.com.</p>
+    <button id="grant" type="button">Grant access</button>
+    <div id="permMsg" class="msg" role="status"></div>
+  </section>
+</main>
+<script src="options.js"></script>
+</body>
+</html>
